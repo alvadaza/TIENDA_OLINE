@@ -980,18 +980,19 @@ function init() {
     }
 
     // Construir el mensaje del pedido
-    let message = "🛒 *Pedido de la tienda online LAPU";
+    let message = "🛒 *Pedido de la tienda online LAPU*\n\n";
+
     cart.forEach((item, index) => {
-      message += `${index + 1}. ${item.name} - $${item.price.toFixed(2)} x ${
-        item.quantity
-      }%0A`;
+      message += `${item.name} \n💲 Precio: $${item.price.toFixed(
+        2
+      )} \n📦 Cantidad: ${item.quantity}\n\n`;
     });
 
     // Agregar datos del usuario
-    message += `%0A👤 Nombre: ${name}`;
-    message += `%0A📍 Dirección: ${address}`;
-    message += `%0A📞 Teléfono: ${phone}`;
-    message += `%0A✨ ¡Gracias por tu compra!`;
+    message += `\n👤 Nombre: ${name}\n\n`;
+    message += `📍 Dirección: ${address}\n\n`;
+    message += `📞 Teléfono: ${phone}\n\n`;
+    message += `✨ ¡Gracias por tu compra!\n`;
 
     // Número de WhatsApp al que se enviará el pedido
     const whatsappNumber = "573143854460"; // Reemplázalo con tu número real
