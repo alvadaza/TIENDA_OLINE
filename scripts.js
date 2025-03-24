@@ -627,7 +627,6 @@ const products = [
       "https://res.cloudinary.com/dl7kjajkv/image/upload/v1742417980/lopu/Imagen23_kmsvqh.jpg",
   },
 ];
-
 // Variables globales
 let cart = [];
 let currentCategory = "todos";
@@ -639,6 +638,7 @@ function loadCart() {
     cart = JSON.parse(savedCart);
     updateCartCount();
     updateCartTotal();
+    renderCartItems();
   }
 }
 
@@ -660,7 +660,7 @@ function updateCartCount() {
 function updateCartTotal() {
   const cartTotal = document.getElementById("cart-total");
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  cartTotal.textContent = `$${total.toFixed(2)}`;
+  cartTotal.textContent = `$${total.toLocaleString("es-CO")}`;
 }
 
 // Mostrar productos según la categoría seleccionada
@@ -691,7 +691,9 @@ function displayProducts() {
                 <p class="product-category">${getCategoryName(
                   product.category
                 )}</p>
-                <p class="product-price">$${product.price.toFixed(2)}</p>
+                <p class="product-price">$${product.price.toLocaleString(
+                  "es-CO"
+                )}</p>
                 <button class="add-to-cart" data-id="${
                   product.id
                 }">Añadir al carrito</button>
@@ -741,7 +743,9 @@ function showProductDetails(product) {
                 <p class="product-detail-category">${getCategoryName(
                   product.category
                 )}</p>
-                <p class="product-detail-price">$${product.price.toFixed(2)}</p>
+                <p class="product-detail-price">$${product.price.toLocaleString(
+                  "es-CO"
+                )}</p>
                 <p class="product-detail-description">${product.description}</p>
                 <button class="add-to-cart-detail" data-id="${
                   product.id
@@ -804,7 +808,7 @@ function showNotification(message) {
   notification.style.position = "fixed";
   notification.style.bottom = "20px";
   notification.style.right = "20px";
-  notification.style.backgroundColor = "rgb(255, 87, 34)";
+  notification.style.backgroundColor = "#6868EA";
   notification.style.color = "white";
   notification.style.padding = "10px 20px";
   notification.style.borderRadius = "4px";
@@ -840,8 +844,10 @@ function renderCartItems() {
     cartItem.innerHTML = `
             <img src="${item.image}" alt="${item.name}" class="cart-item-image">
             <div class="cart-item-details">
-                <h3 class="cart-item-title">${item.name}</h3>
-                <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+                <h3  class="cart-item-title">${item.name}</h3>
+                <p class="cart-item-price">$${item.price.toLocaleString(
+                  "es-CO"
+                )}</p>
                 <div class="cart-item-actions">
                     <button class="quantity-btn decrease" data-id="${
                       item.id
